@@ -1,0 +1,18 @@
+<div class="container text-center vertical-center" *ngIf="loading">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            </div>            
+        </div>
+    </div>
+</div>
+<div class="fade-me-in" *ngIf="gallery">
+    <div class="row">
+        <div class="col-md-12 text-center page-header">
+            <h1>{{ gallery.name }}</h1>
+            <small>{{ gallery.description }}</small>
+        </div>
+    </div>
+    <div id='gallery' *ngIf="!loading" class="fade-me-in"></div>
+</div>

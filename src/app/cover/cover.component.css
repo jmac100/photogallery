@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+div.enter-nav {
+    color: #FFF;
+    background-position: 50% 50% !important;
+    background-size: cover !important;
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../assets/cover.jpg')
+}
+div.fullscreen {
+    min-height: 100vh;
+}
+.cont {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.flex-vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
