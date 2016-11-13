@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { LazyLoadImageModule } from 'ng2-lazyload-image';
 
 import { PhotoService } from './services/photo.service';
 import { AuthService } from './services/auth.service';
@@ -27,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    LazyLoadImageModule,
     RouterModule.forRoot([
       { path: 'album/:id', component: ViewerComponent },
       { path: 'admin', component: AdminComponent, canActivate: [AuthguardService] },

@@ -55,7 +55,7 @@
         <h3>Pictures</h3>
         <div *ngFor="let photo of photos; let i = index" class="form-group">
             <h4>Image {{ i + 1 }}</h4>
-            <img [src]="photo.imagePath" class="thumbnail img-responsive img-rounded">
+            <img [src]="defaultImage" [lazyLoad]="photo.imagePath" [offset]="offset" class="thumbnail img-responsive img-rounded">
             <label for="pictureDescription">Description</label>
             <input type="text" class="form-control" [(ngModel)]="photo.description" id="description" name="description" placeholder="Picture Description...">
             <label for="pictureImagePath">Image Path</label>

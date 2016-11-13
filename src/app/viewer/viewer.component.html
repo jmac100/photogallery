@@ -7,12 +7,16 @@
         </div>
     </div>
 </div>
-<div class="fade-me-in" *ngIf="gallery">
+<div class="container fade-me-in" *ngIf="gallery">
     <div class="row">
         <div class="col-md-12 text-center page-header">
             <h1>{{ gallery.name }}</h1>
             <small>{{ gallery.description }}</small>
         </div>
     </div>
-    <div id='gallery' *ngIf="!loading" class="fade-me-in"></div>
+    <div id='photos' class="fade-me-in bottom-spacer-lg">
+        <a *ngFor="let image of images" [href]="image.imagePath" class="fancybox" rel="gallery1" title="{{image.description || ''}}">
+            <img [src]="defaultImage" [lazyLoad]="image.imagePath" [offset]="offset" class="img-thumbnail">
+        </a>      
+    </div>
 </div>

@@ -12,21 +12,22 @@ declare var $: any;
 export class ViewerComponent implements AfterViewInit {
   gallery: any;
   images;
-  id;
   loading: boolean = true;
-  elementRef: ElementRef;
+  el: HTMLElement;
+  defaultImage: string = 'https://www.placecage.com/1000/1000';
+  offset = 100;
 
   constructor
   (
-    elementRef: ElementRef,
+    el: ElementRef,
     private _route: ActivatedRoute,
     private _photoService: PhotoService
-  ) { this.elementRef = elementRef; }
+  ) { this.el = el.nativeElement; }
 
-
-  ngAfterViewInit() {
+  ngAfterViewInit() {        
     window.setTimeout(() => {
-      this.getAlbum();
+        this.getAlbum();
+        this.initFancyBox();        
     });
   }
 
@@ -40,30 +41,22 @@ export class ViewerComponent implements AfterViewInit {
               });
           this._photoService.getPhotos(id)
               .subscribe(photos => {
-                this.images = [];
-                photos.forEach(element => {
-                  var img = {
-                    src: element.imagePath,
-                    alt: element.description,
-                    title: element.description,
-                    caption: element.description
-                  };
-                  this.images.push(img);
-                });
-                
+                  this.images = photos;
+                });                
             this.loading = false;
-
-            $(this.elementRef.nativeElement).find('#gallery').remove();
-            $(this.elementRef.nativeElement).append("<div id='gallery' class='bottom-spacer fade-me-in'></div>");
-
-            $(this.elementRef.nativeElement).find('#gallery').imagesGrid({
-              images: this.images
-            });
-
-            $(this.elementRef.nativeElement).find('img').siLoader(function(){
-              $(this).fadeIn('slow');
-            });
-        });
-    });
+        });        
   }
+
+  initFancyBox() {
+    $(this.el).find('.fancybox').fancybox({
+        padding: 0,
+        helpers: {
+          overlay: {
+            css: {
+              "background": "rgba(58, 42, 45, 0.95)"
+            }
+          }
+        }
+      });
+    }
 }

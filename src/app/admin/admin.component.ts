@@ -13,7 +13,9 @@ export class AdminComponent implements OnInit {
   loading: boolean = false;
   savingAlbum: boolean = false;
   savingPicture: boolean = false;
-  selected_album: string = 'Select an Album'
+  selected_album: string = 'Select an Album';
+  defaultImage: string = 'https://www.placecage.com/1000/1000';
+  offset = 100;
 
   constructor
   (
