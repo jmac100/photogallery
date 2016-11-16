@@ -3,25 +3,32 @@
     Album Administration
   </h3>
   <div class="row top-spacer-md">
-    <div class="col-md-2 col-md-offset-3">
-      <div class="dropdown">
-        <button class="btn btn-primary btn-block dropdowntoggle" 
-            type="button" id="galleryList" data-toggle="dropdown">
-              {{ selected_album }}
-              <span class="caret"></span>
-        </button>
-        <ul *ngIf="!albums" class="dropdown-menu">
-          <li><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> loading...</li>
-        </ul>
-        <ul *ngIf="albums" class="dropdown-menu">
-          <li *ngFor="let album of albums">
-            <a (click)="getAlbum(album.id)">{{ album.name }}</a>
-          </li>
-        </ul>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6">
+        <div class="dropdown">
+          <button class="btn btn-primary btn-block dropdowntoggle" 
+              type="button" id="galleryList" data-toggle="dropdown">
+                {{ selected_album }}
+                <span class="caret"></span>
+          </button>
+          <ul *ngIf="!albums" class="dropdown-menu">
+            <li><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> loading...</li>
+          </ul>
+          <ul *ngIf="albums" class="dropdown-menu">
+            <li *ngFor="let album of albums">
+              <a (click)="getAlbum(album.id)">{{ album.name }}</a>
+            </li>
+          </ul>
+        </div>      
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-default btn-block" (click)="addNewAlbum()">
+            Add New Album
+          </button>
       </div>
     </div>
   </div>
-  <div class="text-center" *ngIf="loading">
+  <div class="text-center top-spacer-md" *ngIf="loading">
     <div class="row">
         <div class="col-md-12">
             <div>
@@ -45,30 +52,43 @@
           <input type="checkbox" [(ngModel)]="album.isForProfile" id="isForProfile" name="isForProfile">
           &nbsp;<label for="profile">Use as a Profile Album</label>          
         </div>   
-        <button class="btn btn-default pull-right" (click)="updateAlbum()">
-          <i *ngIf="savingAlbum" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Save Album
-        </button>     
+        <button class="btn btn-default pull-right" (click)="saveAlbum()">
+          <i *ngIf="savingAlbum" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Save Album &nbsp;
+        </button>       
+        <button *ngIf="(!photos?.length) && galleryId > 0" class="btn btn-default pull-right" (click)="deleteAlbum()">
+          <i *ngIf="savingAlbum" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Delete
+        </button>          
       </div>
     </div>
-    <div *ngIf="photos" class="row bottom-spacer-md">
+    <div *ngIf="photos && photos.length" class="row bottom-spacer-md">
       <div class="col-md-6 col-md-offset-3">
         <h3>Pictures</h3>
         <div *ngFor="let photo of photos; let i = index" class="form-group">
             <h4>Image {{ i + 1 }}</h4>
-            <img [src]="defaultImage" [lazyLoad]="photo.imagePath" [offset]="offset" class="thumbnail img-responsive img-rounded">
+            <img *ngIf="photo.imagePath" [src]="photo.imagePath" class="thumbnail img-responsive img-rounded">
             <label for="pictureDescription">Description</label>
             <input type="text" class="form-control" [(ngModel)]="photo.description" id="description" name="description" placeholder="Picture Description...">
             <label for="pictureImagePath">Image Path</label>
             <input type="text" class="form-control" [(ngModel)]="photo.imagePath" id="pictureImagePath" name="pictureImagePath" placeholder="Picture Image Path...">
             <div class="row top-spacer-md">
               <div class="col-md-12">
-                <button class="btn btn-default pull-right" (click)="updatePhoto(photo)">
-                <i *ngIf="savingPicture" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Save
-              </button>
+                <button class="btn btn-default pull-right" (click)="savePhoto(photo)">
+                  <i *ngIf="savingPicture" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Save &nbsp;
+                </button>
+                <button *ngIf="photo.id > 0" class="btn btn-default pull-right" (click)="deletePhoto(photo.id)">
+                  <i *ngIf="savingPicture" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Delete
+                </button>
               </div>
             </div>
             <hr>
-        </div>        
+        </div>
+      </div>
+    </div>
+    <div *ngIf="galleryId > 0" class="row top-spacer-md"> 
+      <div class="col-md-6 col-md-offset-3">
+        <button class="btn btn-default pull-right" (click)="addNewPhoto()">
+          Add New Photo
+        </button>
       </div>
     </div>
   </div>

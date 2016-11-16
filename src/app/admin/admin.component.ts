@@ -7,6 +7,7 @@ import { PhotoService } from '../services/photo.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  galleryId: string;
   albums: any[];
   album: any;
   photos: any[];
@@ -34,6 +35,7 @@ export class AdminComponent implements OnInit {
   }
 
   getAlbum(id: string) {
+    this.galleryId = id;
     this.loading = true;
     this._photoService.getGallery(id)
       .subscribe(album => {
@@ -51,15 +53,89 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  updateAlbum() {
+  saveAlbum() {
     this.savingAlbum = true;
-    this._photoService.updateGallery(this.album);   
-    this.savingAlbum = false;
+    if (this.album.id == 0){
+      this._photoService.saveGallery(this.album)
+        .subscribe(res => {
+          this.albums.push(res);
+          this.album.id = res.id;
+          this.galleryId = this.album.id;
+          this.selected_album = this.album.name;
+          this.savingAlbum = false;
+        });
+    } else {
+      this._photoService.updateGallery(this.album)
+        .subscribe(res => {
+          this.savingAlbum = false;
+        });
+    }
   }
 
-  updatePhoto(photo: any) {
+  deleteAlbum() {
+    this.galleryId = '';
+    this.savingAlbum = true;
+
+    let index = this.albums.findIndex(x => x.id === this.album.id);
+    this.albums.splice(index, 1);
+
+    this._photoService.deleteGallery(this.album.id)
+      .subscribe(res => {
+        this.selected_album = 'Select an Album';
+        this.album = null;
+        this.savingAlbum = false;
+      });
+  }
+
+  savePhoto(photo: any) {
     this.savingPicture = true;
-    this._photoService.updatePhoto(photo);
-    this.savingPicture = false;
+    
+    if (photo.id == 0) {
+      this._photoService.savePhoto(photo)
+        .subscribe(res => {
+          photo.id = res.id;
+          this.savingPicture = false;
+        });
+    } else {
+      this._photoService.updatePhoto(photo)
+        .subscribe(photo => {
+          this.savingPicture = false;
+        });
+    }
+  }
+
+  deletePhoto(id: any) {
+    this.savingPicture = true;
+    let index = this.photos.findIndex(x => x.id === id);
+    this.photos.splice(index, 1);
+    this._photoService.deletePhoto(id)
+      .subscribe(res => {
+        this.savingPicture = false;
+      })
+  }
+
+  addNewPhoto() {
+    var newPhoto = {
+      description: '',
+      imagePath: '',
+      id: 0,
+      galleryId: this.galleryId
+    };
+    this.photos.push(newPhoto);
+  }
+
+  addNewAlbum() {
+    this.galleryId = '';
+    this.selected_album = 'Adding new Album...';
+    this.photos = [];
+
+    var newGallery = {
+      description: '',
+      id: 0,
+      isForProfile: false,
+      name: ''
+    };
+
+    this.album = newGallery;
   }
 }
