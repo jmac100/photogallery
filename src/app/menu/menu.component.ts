@@ -29,9 +29,9 @@ export class MenuComponent implements OnInit {
     this._photoService.getGalleries()
       .subscribe(galleries => {
         galleries.forEach(element => {
-          if (element.isForProfile) {
+          if (element.isForProfile && element.isEnabled) {
             this.profiles.push(element);
-          } else {
+          } else if (element.isEnabled) {
             this.galleries.push(element);
           }
         });

@@ -48,10 +48,22 @@
           <label for="description">Album Description</label>
           <input type="text" class="form-control" [(ngModel)]="album.description" id="description" name="description" placeholder="Album Description..." >
         </div>
+        <div class="form-group">            
+            <label for="ordinal">Ordinal</label>
+            <div class="row">
+              <div class="col-md-2">
+                <input type="number" [(ngModel)]="album.ordinal" id="ordinal" name="ordinal" class="form-control">  
+              </div>
+            </div>        
+        </div> 
         <div class="form-group">
-          <input type="checkbox" [(ngModel)]="album.isForProfile" id="isForProfile" name="isForProfile">
-          &nbsp;<label for="profile">Use as a Profile Album</label>          
-        </div>   
+            <input type="checkbox" [(ngModel)]="album.isForProfile" id="isForProfile" name="isForProfile">
+            &nbsp;<label for="profile">Use as a Profile Album</label>          
+        </div>
+        <div class="form-group">
+            <input type="checkbox" [(ngModel)]="album.isEnabled" id="isEnabled" name="isEnabled">
+            &nbsp;<label for="isEnabled">Enabled</label>          
+        </div>  
         <button class="btn btn-default pull-right" (click)="saveAlbum()">
           <i *ngIf="savingAlbum" class="fa fa-circle-o-notch fa-spin fa-fw"></i> Save Album &nbsp;
         </button>       
@@ -70,6 +82,18 @@
             <input type="text" class="form-control" [(ngModel)]="photo.description" id="description" name="description" placeholder="Picture Description...">
             <label for="pictureImagePath">Image Path</label>
             <input type="text" class="form-control" [(ngModel)]="photo.imagePath" id="pictureImagePath" name="pictureImagePath" placeholder="Picture Image Path...">
+            <div class="form-group">            
+              <label for="photoOrdinal">Ordinal</label>
+              <div class="row">
+                <div class="col-md-2">
+                  <input type="number" [(ngModel)]="photo.ordinal" id="photoOrdinal" name="photoOrdinal" class="form-control">  
+                </div>
+              </div>        
+            </div> 
+            <div class="form-group">
+              <input type="checkbox" [(ngModel)]="photo.isEnabled" id="photoIsEnabled" name="photoIsEnabled">
+              &nbsp;<label for="photoIsEnabled">Enabled</label>          
+            </div>
             <div class="row top-spacer-md">
               <div class="col-md-12">
                 <button class="btn btn-default pull-right" (click)="savePhoto(photo)">
