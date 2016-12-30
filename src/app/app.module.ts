@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { LazyLoadImageModule } from 'ng2-lazyload-image';
 
 import { PhotoService } from './services/photo.service';
@@ -38,7 +37,6 @@ import { AdminComponent } from './admin/admin.component';
   providers: [
     PhotoService,
     AuthService,
-    AUTH_PROVIDERS,
     AuthguardService
   ],
   bootstrap: [AppComponent]
