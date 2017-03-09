@@ -7,7 +7,7 @@ div.enter-nav {
     background-position: 50% 50% !important;
     background-size: cover !important;
     width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../assets/cover.jpg')
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/cover.jpg')
 }
 div.fullscreen {
     min-height: 100vh;
