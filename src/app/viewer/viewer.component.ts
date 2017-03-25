@@ -53,7 +53,8 @@ export class ViewerComponent implements AfterViewInit {
         helpers: {
           overlay: {
             css: {
-              "background": "rgba(58, 42, 45, 0.95)"
+              // "background": "rgba(58, 42, 45, 0.95)"
+              "background": "rgba(0, 0, 0, 0.88)"     
             }
           }
         }

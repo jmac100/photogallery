@@ -13,12 +13,17 @@ div.fullscreen {
     min-height: 100vh;
 }
 .cont {
-    max-width: 1200px;
+    max-width: 650px;
     margin: 0 auto;
     padding: 0 20px;
+    margin-bottom: 150px;
 }
 .flex-vertical-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+p {
+    font-size: 24px;
 }
