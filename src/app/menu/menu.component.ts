@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   constructor
   (
     private _photoService: PhotoService,
-    private auth: AuthService
+    public auth: AuthService
   ) { }
 
   ngOnInit() {
