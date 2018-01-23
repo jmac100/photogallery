@@ -15,7 +15,8 @@
         </div>
     </div>
     <div id='photos' class="fade-me-in bottom-spacer-lg">
-        <a *ngFor="let image of images" [href]="image.imagePath" class="fancybox" rel="gallery1" title="{{image.description || ''}}">
+        <a *ngFor="let image of images" data-fancybox="gallery" [attr.data-caption]="image.description" [href]="image.imagePath"
+            data-options='{ "loop": true, "transitionDuration": 700 }'>
             <img *ngIf="image.isEnabled" [src]="defaultImage" [lazyLoad]="image.imagePath" [offset]="offset" class="img-thumbnail">
         </a>      
     </div>

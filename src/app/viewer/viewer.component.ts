@@ -26,8 +26,7 @@ export class ViewerComponent implements AfterViewInit {
 
   ngAfterViewInit() {        
     window.setTimeout(() => {
-        this.getAlbum();
-        this.initFancyBox();        
+        this.getAlbum();      
     });
   }
 
@@ -46,18 +45,4 @@ export class ViewerComponent implements AfterViewInit {
             this.loading = false;
         });        
   }
-
-  initFancyBox() {
-    $(this.el).find('.fancybox').fancybox({
-        padding: 0,
-        helpers: {
-          overlay: {
-            css: {
-              // "background": "rgba(58, 42, 45, 0.95)"
-              "background": "rgba(0, 0, 0, 0.88)"     
-            }
-          }
-        }
-      });
-    }
 }

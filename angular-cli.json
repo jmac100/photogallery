@@ -20,13 +20,13 @@
       "styles": [
         "../node_modules/bootswatch/slate/bootstrap.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../third_party/fancybox/jquery.fancybox.css",
+        "../third_party/fancybox/jquery.fancybox.min.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "../third_party/fancybox/jquery.fancybox.pack.js"
+        "../third_party/fancybox/jquery.fancybox.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
