@@ -1,7 +1,4 @@
-body {
-    margin: 0;
-    padding: 0;
-}
+
 div.enter-nav {
     color: #FFF;
     background-position: 50% 50% !important;
@@ -9,10 +6,8 @@ div.enter-nav {
     background-attachment: fixed;
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/cover.jpg');
-    min-height: 100%;
-}
-div.fullscreen {
-    min-height: 94vh;
+    height: calc(100vh - 54px);
+    overflow: hidden;   
 }
 .cont {
     max-width: 650px;   
