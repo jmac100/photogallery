@@ -15,11 +15,11 @@
   <div class="collapse navbar-collapse" id="photo-nav">
     <ul class="nav navbar-nav navbar-default">
       <li>
-        <a class="btn btn-default" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</a>
+        <a class="btn btn-default" (click)="auth.login()" *ngIf="!auth.isAuthenticated()">Log In</a>
         <a class="btn btn-default" (click)="auth.logout()" onclick='$(".navbar-collapse").collapse("hide");'
-             *ngIf="auth.authenticated()">Log Out</a>
+             *ngIf="auth.isAuthenticated()">Log Out</a>
       </li>
-      <li *ngIf="auth.authenticated()"><a routerLink="/admin" 
+      <li *ngIf="auth.isAuthenticated()"><a routerLink="/admin" 
         onclick='$(".navbar-collapse").collapse("hide");'>Admin</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
