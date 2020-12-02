@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class PhotoService {
@@ -21,7 +21,7 @@ export class PhotoService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, JSON.stringify(gallery), options)
+    return this.http.post(url, {gallery}, options)
       .map(res => res.json());
   }
 
@@ -30,7 +30,7 @@ export class PhotoService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.put(url, JSON.stringify(gallery), options)
+    return this.http.put(url, { gallery }, options)
       .map(res => res);
   }
 
@@ -45,7 +45,7 @@ export class PhotoService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.put(url, JSON.stringify(photo), options)
+    return this.http.put(url, {photo}, options)
       .map(res => res);
   }
 
@@ -54,7 +54,7 @@ export class PhotoService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, JSON.stringify(photo), options)
+    return this.http.post(url, {photo}, options)
       .map(res => res.json());
   }
 
@@ -65,7 +65,7 @@ export class PhotoService {
   }
 
   getPhotos(id: string) {
-    return this.executeUrl(this.buildUrl('api/galleryphoto/' + id));
+    return this.executeUrl(this.buildUrl(`api/galleries/${id}/photos`));
   }
 
   private executeUrl(url: string) {
@@ -74,6 +74,6 @@ export class PhotoService {
   }
 
   private buildUrl(urlPart: string): string {
-    return 'http://jwmac.info/PhotoService/' + urlPart;
+    return `${environment.apiUrl}${urlPart}`
   }
 }
